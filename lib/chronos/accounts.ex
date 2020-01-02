@@ -205,15 +205,8 @@ defmodule Chronos.Accounts do
     Credential.changeset(credential, %{})
   end
 
-  def authenticate_by_email_password(email, _password) do
-    query =
-      from u in User,
-        inner_join: c in assoc(u, :credential),
-        where: c.email == ^email
-
-    case Repo.one(query) do
-      %User{} = user -> {:ok, user}
-      nil -> {:error, :unauthorized}
-    end
+  def authenticate_by_email_password(email, password) do
+    Repo.get_by(Credential, email: email)
+    |> Argon2.check_pass(password)
   end
 end
