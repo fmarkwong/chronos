@@ -6,6 +6,8 @@ defmodule Chronos.Accounts.User do
     field :first_name, :string
     field :last_name, :string
 
+    has_one :credential, Chronos.Accounts.Credential
+
     timestamps()
   end
 
