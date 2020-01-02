@@ -1,0 +1,23 @@
+<h1>Show Client</h1>
+
+<ul>
+
+  <li>
+    <strong>Initials:</strong>
+    <%= @client.initials %>
+  </li>
+
+  <li>
+    <strong>Bed number:</strong>
+    <%= @client.bed_number %>
+  </li>
+
+  <li>
+    <strong>Dorm:</strong>
+    <%= @client.dorm %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.admin_panel_client_path(@conn, :edit, @client) %></span>
+<span><%= link "Back", to: Routes.admin_panel_client_path(@conn, :index) %></span>

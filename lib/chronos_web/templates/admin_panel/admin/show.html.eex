@@ -1,0 +1,13 @@
+<h1>Show Admin</h1>
+
+<ul>
+
+  <li>
+    <strong>Role:</strong>
+    <%= @admin.role %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.admin_panel_admin_path(@conn, :edit, @admin) %></span>
+<span><%= link "Back", to: Routes.admin_panel_admin_path(@conn, :index) %></span>

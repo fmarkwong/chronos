@@ -22,16 +22,24 @@ defmodule ChronosWeb.Router do
     resources "/sessions", SessionController, only: [:new, :create, :delete], singleton: true
   end
 
+  scope "/admin_panel", ChronosWeb.AdminPanel, as: :admin_panel do
+    pipe_through [:browser, :authenticate_user]
+
+    resources "/clients", ClientController
+    resources "/admins", AdminController
+    resources "/appointments", AppointmentController
+  end
+
   defp authenticate_user(conn, _) do
     case get_session(conn, :user_id) do
       nil ->
         conn
         |> Phoenix.Controller.put_flash(:error, "Login required")
-        |> Phoenix.Controller.redirector(to: "/")
+        |> Phoenix.Controller.redirect(to: "/")
         |> halt()
 
       user_id ->
-        assign(conn, :current_user, Hello.Accounts.get_user!(user_id))
+        assign(conn, :current_user, Chronos.Accounts.get_user!(user_id))
     end
   end
 

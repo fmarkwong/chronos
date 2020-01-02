@@ -1,0 +1,23 @@
+<h1>Show Appointment</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @appointment.name %>
+  </li>
+
+  <li>
+    <strong>Type:</strong>
+    <%= @appointment.type %>
+  </li>
+
+  <li>
+    <strong>Date time:</strong>
+    <%= @appointment.date_time %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.admin_panel_appointment_path(@conn, :edit, @appointment) %></span>
+<span><%= link "Back", to: Routes.admin_panel_appointment_path(@conn, :index) %></span>
